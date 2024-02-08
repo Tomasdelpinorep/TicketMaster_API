@@ -8,12 +8,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomePage> {
-  @override
-  void initState(){
-    super.initState();
-    eventRepository = EventRepositoryImpl();
-  }
-  
+  // @override
+  // void initState(){
+  //   super.initState();
+  //   eventRepository = EventRepositoryImpl();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
