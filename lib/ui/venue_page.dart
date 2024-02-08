@@ -35,8 +35,19 @@ class _VenuePageState extends State<VenuePage> {
 }
 
 Widget _venueList() {
-  return BlocBuilder<VenueBloc, VenueBlocState>(
-    builder: (context, state) {
-      return ListView.builder(itemBuilder: itemBuilder)
-    });
+  return BlocBuilder<VenueBloc, VenueBlocState>(builder: (context, state) {
+    if (state is VenueFetchSuccess) {
+      return ListView.builder(
+          itemCount: state.venueList.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(state.venueList[index].name!),
+            );
+          });
+    } else if (state is VenueFetchError) {
+      return Text(state.errorMessage);
+    } else {
+      return const CircularProgressIndicator();
+    }
+  });
 }

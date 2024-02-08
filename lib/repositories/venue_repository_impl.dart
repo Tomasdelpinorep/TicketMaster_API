@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 
 import 'package:http/http.dart';
 import 'package:ticketmaster_api/models/venue_response/venue.dart';
@@ -19,9 +18,7 @@ class VenueRepositoryImpl extends VenueRepository {
     final response = await _httpClient.get(Uri.parse(
         'https://app.ticketmaster.com/discovery/v2/venues.json?apikey=pGndTCt0lGcfKooeA9oQcX8domEdbOBI'));
     if (response.statusCode == 200) {
-      return VenueResponse.fromJson(json.decode(response.body))
-          .embedded!
-          .venues!;
+      return VenueResponse.fromJson(response.body).embedded!.venues!;
     } else {
       throw Exception('Failed to load venues');
     }
