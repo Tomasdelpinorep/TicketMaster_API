@@ -42,7 +42,10 @@ Widget _venueList() {
           itemBuilder: (context, index) {
             return Card(
               child: Column(
-                children: [Text(state.venueList[index].name!), NetworkImage()],
+                children: [
+                  Text(state.venueList[index].name!),
+                  Image.network(state.venueList[index].images[0].url!)
+                ],
               ),
             );
           });
