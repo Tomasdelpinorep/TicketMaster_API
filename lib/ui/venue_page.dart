@@ -40,8 +40,10 @@ Widget _venueList() {
       return ListView.builder(
           itemCount: state.venueList.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(state.venueList[index].name!),
+            return Card(
+              child: Column(
+                children: [Text(state.venueList[index].name!), NetworkImage()],
+              ),
             );
           });
     } else if (state is VenueFetchError) {
