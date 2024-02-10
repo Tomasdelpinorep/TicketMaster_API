@@ -44,7 +44,7 @@ Widget _venueList() {
               child: Column(
                 children: [
                   Text(state.venueList[index].name!),
-                  Image.network(state.venueList[index].images[0].url!)
+                  Image.network(state.venueList[index].images![0].url!)
                 ],
               ),
             );
