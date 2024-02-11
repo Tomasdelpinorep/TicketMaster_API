@@ -4,6 +4,7 @@ part of 'venue_bloc.dart';
 sealed class VenueBlocEvent {}
 
 class VenueFetchList extends VenueBlocEvent {
+  // final Country country;
   VenueFetchList();
 }
 

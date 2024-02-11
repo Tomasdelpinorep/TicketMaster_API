@@ -34,6 +34,11 @@ class _VenuePageState extends State<VenuePage> {
   }
 }
 
+const textStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 15,
+);
+
 Widget _venueList() {
   return BlocBuilder<VenueBloc, VenueBlocState>(builder: (context, state) {
     if (state is VenueFetchSuccess) {
@@ -41,10 +46,63 @@ Widget _venueList() {
           itemCount: state.venueList.length,
           itemBuilder: (context, index) {
             return Card(
+              color: Colors.grey.shade200,
               child: Column(
                 children: [
-                  Text(state.venueList[index].name!),
-                  Image.network(state.venueList[index].images![0].url!)
+                  Text(
+                    state.venueList[index].name!,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
+                  ),
+                  const Divider(),
+                  if (state.venueList[index].images != null &&
+                      state.venueList[index].images!.isNotEmpty)
+                    Image.network(
+                      state.venueList[index].images![0].url!,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    )
+                  else
+                    const Text('No image available'),
+                  Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            state.venueList[index].city!.name!,
+                            style: textStyle,
+                          ),
+                          const Text(' - ', style: textStyle),
+                          Text(state.venueList[index].country!.countryCode!,
+                              style: textStyle)
+                        ]),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ButtonStyle(
+                              minimumSize:
+                                  MaterialStateProperty.all(const Size(30, 30)),
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.lightBlue)),
+                          child: const Text(
+                            'Info',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 15),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             );
