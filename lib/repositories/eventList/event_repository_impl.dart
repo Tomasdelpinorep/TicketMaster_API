@@ -13,7 +13,7 @@ class EventRepositoryImpl extends EventRepository{
   @override
   Future<List<Event>> fetchEvents() async{
     final response = 
-      await _client.get(Uri.parse("https://app.ticketmaster.com/discovery/v2/events.json?countryCode=ES&apikey=pGndTCt0lGcfKooeA9oQcX8domEdbOBI"));
+      await _client.get(Uri.parse("https://app.ticketmaster.com/discovery/v2/events.json?apikey=pGndTCt0lGcfKooeA9oQcX8domEdbOBI"));
     if (response.statusCode == 200){
       final jsonVal = json.decode(response.body);
       final events = EventsResponse.fromJson(jsonVal).embedded!.events!;

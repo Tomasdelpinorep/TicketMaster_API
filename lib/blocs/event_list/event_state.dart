@@ -16,6 +16,11 @@ final class EventsFetched extends EventState{
   const EventsFetched(this.eventList);
 }
 
+final class EventDetailsFetched extends EventState{
+  final EventDetails eventDetails;
+  const EventDetailsFetched(this.eventDetails);
+}
+
 final class EventsFetchError extends EventState{
   final String messageError;
   const EventsFetchError(this.messageError);
