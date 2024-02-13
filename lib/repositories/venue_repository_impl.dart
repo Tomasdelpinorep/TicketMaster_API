@@ -13,8 +13,7 @@ class VenueRepositoryImpl extends VenueRepository {
     final response = await _httpClient.get(Uri.parse(
         'https://app.ticketmaster.com/discovery/v2/venues/$id?apikey=pGndTCt0lGcfKooeA9oQcX8domEdbOBI'));
     if (response.statusCode == 200) {
-      final jsonValue = json.decode(response.body);
-      return Venue.fromJson(jsonValue);
+      return Venue.fromJson(response.body);
     } else {
       throw Exception('Failed to load venues');
     }

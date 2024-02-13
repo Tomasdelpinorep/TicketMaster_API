@@ -15,13 +15,12 @@ class VenueDetail extends StatefulWidget {
 class _VenueDetailState extends State<VenueDetail> {
   late VenueRepository venueRepository;
   late VenueBloc _venueBloc;
-  String id = '';
 
   @override
   void initState() {
     super.initState();
     venueRepository = VenueRepositoryImpl();
-    _venueBloc = VenueBloc(venueRepository)..add(VenueFetchDetail(id));
+    _venueBloc = VenueBloc(venueRepository)..add(VenueFetchDetail(widget.id));
   }
 
   @override
@@ -36,15 +35,13 @@ class _VenueDetailState extends State<VenueDetail> {
 
   Widget _venueDetail(BuildContext context) {
     return BlocBuilder<VenueBloc, VenueBlocState>(builder: (context, state) {
-      if (state is VenueBlocInitial) {
-        return const Center(child: CircularProgressIndicator());
-      } else if (state is VenueFetchDetailError) {
+      if (state is VenueFetchDetailError) {
         return Column(
           children: [
             Text(state.errorMessage),
             ElevatedButton(
                 onPressed: () {
-                  context.watch<VenueBloc>().add(VenueFetchDetail(id));
+                  context.watch<VenueBloc>().add(VenueFetchDetail(widget.id));
                 },
                 child: const Text("Reintentar"))
           ],
@@ -53,9 +50,8 @@ class _VenueDetailState extends State<VenueDetail> {
         return Card(
           child: Text(state.venueDetail.name!),
         );
-      } else {
-        return const Text('Not supported');
       }
+      return const Center(child: CircularProgressIndicator());
     });
   }
 }
