@@ -16,6 +16,11 @@ class _VenueDetailState extends State<VenueDetail> {
   late VenueRepository venueRepository;
   late VenueBloc _venueBloc;
 
+  static const textStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 35,
+);
+
   @override
   void initState() {
     super.initState();
@@ -47,8 +52,26 @@ class _VenueDetailState extends State<VenueDetail> {
           ],
         );
       } else if (state is VenueFetchDetailSuccess) {
-        return Card(
-          child: Text(state.venueDetail.name!),
+        return SizedBox(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 5),
+            child: Column(
+              children: [
+                   if (state.venueDetail.images != null &&
+                          state.venueDetail.images!.isNotEmpty)
+                        Image.network(
+                          state.venueDetail.images![0].url!,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        )
+                      else
+                        Center(child: Padding(
+                          padding: const EdgeInsets.only(top: 60),
+                          child: Text(state.venueDetail.name!, style: textStyle,),
+                        )),
+              ],
+            ),
+          ),
         );
       }
       return const Center(child: CircularProgressIndicator());
