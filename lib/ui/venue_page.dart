@@ -42,7 +42,7 @@ const textStyle = TextStyle(
 
 Widget _venueList() {
   return BlocBuilder<VenueBloc, VenueBlocState>(builder: (context, state) {
-    if (state is VenueFetchSuccess) {
+    if (state is VenueFetchListSuccess) {
       return ListView.builder(
           itemCount: state.venueList.length,
           itemBuilder: (context, index) {
@@ -115,7 +115,7 @@ Widget _venueList() {
               ),
             );
           });
-    } else if (state is VenueFetchError) {
+    } else if (state is VenueFetchListError) {
       return Text(state.errorMessage);
     } else {
       return const CircularProgressIndicator();

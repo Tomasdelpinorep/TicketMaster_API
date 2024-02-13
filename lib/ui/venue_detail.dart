@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ticketmaster_api/blocs/bloc/venue_bloc.dart';
-import 'package:ticketmaster_api/models/venue_response/venue.dart';
 import 'package:ticketmaster_api/repositories/venue_repository.dart';
 import 'package:ticketmaster_api/repositories/venue_repository_impl.dart';
 
@@ -22,35 +21,37 @@ class _VenueDetailState extends State<VenueDetail> {
   void initState() {
     super.initState();
     venueRepository = VenueRepositoryImpl();
-    _venueBloc = VenueBloc(venueRepository)..add(VenueViewDetail(id));
+    _venueBloc = VenueBloc(venueRepository)..add(VenueFetchDetail(id));
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: _venueBloc,
-      child: Scaffold(),
+      child: Scaffold(
+        body: _venueDetail(context),
+      ),
     );
   }
 
-  Widget _venueDetail(BuildContext context, Venue venueDetail) {
+  Widget _venueDetail(BuildContext context) {
     return BlocBuilder<VenueBloc, VenueBlocState>(builder: (context, state) {
       if (state is VenueBlocInitial) {
         return const Center(child: CircularProgressIndicator());
-      } else if (state is VenueFetchError) {
+      } else if (state is VenueFetchDetailError) {
         return Column(
           children: [
             Text(state.errorMessage),
             ElevatedButton(
                 onPressed: () {
-                  context.watch<VenueBloc>().add(VenueViewDetail(id));
+                  context.watch<VenueBloc>().add(VenueFetchDetail(id));
                 },
-                child: const Text("Volver"))
+                child: const Text("Reintentar"))
           ],
         );
-      } else if (state is VenueDetail) {
+      } else if (state is VenueFetchDetailSuccess) {
         return Card(
-          child: Text(venueDetail.name!),
+          child: Text(state.venueDetail.name!),
         );
       } else {
         return const Text('Not supported');

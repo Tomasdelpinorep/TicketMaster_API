@@ -9,8 +9,15 @@ class VenueRepositoryImpl extends VenueRepository {
   final Client _httpClient = Client();
 
   @override
-  Future<Venue> fetchVenueDetails(String id) {
-    throw UnimplementedError();
+  Future<Venue> fetchVenueDetails(String id) async {
+    final response = await _httpClient.get(Uri.parse(
+        'https://app.ticketmaster.com/discovery/v2/venues/$id?apikey=pGndTCt0lGcfKooeA9oQcX8domEdbOBI'));
+    if (response.statusCode == 200) {
+      final jsonValue = json.decode(response.body);
+      return Venue.fromJson(jsonValue);
+    } else {
+      throw Exception('Failed to load venues');
+    }
   }
 
   @override
