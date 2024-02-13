@@ -25,9 +25,6 @@ class _VenuePageState extends State<VenuePage> {
     return BlocProvider(
       create: (context) => VenueBloc(venueRepository)..add(VenueFetchList()),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Venues'),
-        ),
         body: _venueList(),
       ),
     );
