@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: const HomePage(),
-      theme: ,
       routes: {
         '/events':(context) => const EventsPage(),
         'venues':(context) => const VenuePage()

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ticketmaster_api/blocs/bloc/event_list/event_bloc.dart';
+import 'package:ticketmaster_api/blocs/event_list/event_bloc.dart';
 import 'package:ticketmaster_api/models/events_response/event.dart';
 import 'package:ticketmaster_api/repositories/eventList/event_repository.dart';
-import 'package:ticketmaster_api/repositories/eventList/event_repostiroy_impl.dart';
+import 'package:ticketmaster_api/repositories/eventList/event_repository_impl.dart';
 
 class EventsPage extends StatefulWidget {
   const EventsPage({super.key});
@@ -30,7 +30,7 @@ class _EventsPageState extends State<EventsPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) {
-          return EventBloc(eventRepository)..add(EventsFetchEvent());
+          return EventBloc(eventRepository)..add(EventsFetchList());
         },
         child: Scaffold(
             appBar: AppBar(
@@ -49,7 +49,7 @@ class _EventsPageState extends State<EventsPage> {
             Text(state.messageError),
             ElevatedButton(
                 onPressed: () {
-                  context.watch<EventBloc>().add(EventsFetchEvent());
+                  context.watch<EventBloc>().add(EventsFetchList());
                 },
                 child: const Text("Retry"))
           ],
