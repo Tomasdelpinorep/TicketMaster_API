@@ -3,6 +3,7 @@ import 'package:ticketmaster_api/blocs/bloc/venue_bloc.dart';
 import 'package:ticketmaster_api/repositories/venue_repository.dart';
 import 'package:ticketmaster_api/repositories/venue_repository_impl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ticketmaster_api/ui/venue_detail.dart';
 
 class VenuePage extends StatefulWidget {
   const VenuePage({super.key});
@@ -86,7 +87,14 @@ Widget _venueList() {
                       Padding(
                         padding: const EdgeInsets.only(right: 12),
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => VenueDetail(
+                                          id: state.venueList[index].id!,
+                                        )));
+                          },
                           style: ButtonStyle(
                               minimumSize:
                                   MaterialStateProperty.all(const Size(30, 30)),
