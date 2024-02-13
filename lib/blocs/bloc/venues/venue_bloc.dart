@@ -2,8 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:ticketmaster_api/repositories/venue_repository.dart';
 
-import '../../models/venue_response/venue.dart';
-
+import '../../../models/venue_response/venue.dart';
 part 'venue_event.dart';
 part 'venue_state.dart';
 

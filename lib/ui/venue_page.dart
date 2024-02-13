@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ticketmaster_api/blocs/bloc/venue_bloc.dart';
+import 'package:ticketmaster_api/blocs/bloc/venues/venue_bloc.dart';
 import 'package:ticketmaster_api/repositories/venue_repository.dart';
 import 'package:ticketmaster_api/repositories/venue_repository_impl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
