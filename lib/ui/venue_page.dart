@@ -57,7 +57,7 @@ Widget _venueList() {
                             ))),
                 child: Card(
                   elevation: 8,
-                  color: Colors.grey.shade200,
+                  surfaceTintColor: Colors.white,
                   child: Column(
                     children: [
                       Text(
@@ -76,7 +76,7 @@ Widget _venueList() {
                           fit: BoxFit.cover,
                         )
                       else
-                        const Text('No image available'),
+                        Image.asset('assets/images/event.jpg'),
                       Padding(
                         padding: const EdgeInsets.all(12),
                         child: Row(

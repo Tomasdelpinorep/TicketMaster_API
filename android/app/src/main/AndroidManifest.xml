@@ -3,6 +3,10 @@
         android:label="ticketmaster_api"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <!-- <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyC9Oh7daJ3C5adgxJ-Knk2QxpnAYxogErI"/> -->
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
