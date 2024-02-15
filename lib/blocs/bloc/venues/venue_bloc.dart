@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:ticketmaster_api/models/venue_response/country.dart';
 import 'package:ticketmaster_api/repositories/venue_repository.dart';
 
 import '../../../models/venue_response/venue.dart';

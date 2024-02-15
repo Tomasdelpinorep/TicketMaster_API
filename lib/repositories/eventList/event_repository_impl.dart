@@ -26,7 +26,7 @@ class EventRepositoryImpl extends EventRepository{
 
   @override
   Future<EventDetails> fetchEventDetails(eventId) async{
-    final response = await _client.get(Uri.parse("https://app.ticketmaster.com/discovery/v2/events/${eventId}?apikey=pGndTCt0lGcfKooeA9oQcX8domEdbOBI"));
+    final response = await _client.get(Uri.parse("https://app.ticketmaster.com/discovery/v2/events/$eventId?apikey=pGndTCt0lGcfKooeA9oQcX8domEdbOBI"));
 
     if(response.statusCode == 200){
       return EventDetails.fromJson(json.decode(response.body));

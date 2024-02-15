@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:http/http.dart';
 import 'package:ticketmaster_api/models/venue_response/venue.dart';
 import 'package:ticketmaster_api/models/venue_response/venue_response.dart';

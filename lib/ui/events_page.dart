@@ -5,6 +5,7 @@ import 'package:ticketmaster_api/models/events_response/event.dart';
 import 'package:ticketmaster_api/repositories/eventList/event_repository.dart';
 import 'package:ticketmaster_api/repositories/eventList/event_repository_impl.dart';
 import 'package:ticketmaster_api/ui/event_details_page.dart';
+import 'package:ticketmaster_api/widgets/events_list_item_widget.dart';
 
 class EventsPage extends StatefulWidget {
   const EventsPage({super.key});
@@ -33,8 +34,7 @@ class _EventsPageState extends State<EventsPage> {
         create: (context) {
           return EventBloc(eventRepository)..add(EventsFetchList());
         },
-        child: Scaffold(
-            body: _eventsView(context)));
+        child: Scaffold(body: _eventsView(context)));
   }
 
   Widget _eventsView(BuildContext context) {
@@ -64,44 +64,11 @@ class _EventsPageState extends State<EventsPage> {
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
         return GestureDetector(
-          onTap: () => Navigator.push(context, MaterialPageRoute(
-            builder: (context) { 
-            return EventDetailsPage(eventId: eventsList[index].id);
-            })),
-
-          child: Card(
-            surfaceTintColor: Colors.white,
-            elevation: 8,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Center(
-                        child: SizedBox(
-                            height: 300,
-                            width: 400,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: Image.network(
-                                    eventsList[index].images![0].url ?? "",
-                                    fit: BoxFit.cover),
-                              ),
-                            ))
-                      ),
-                      Text(eventsList[index].name!,
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold
-                      ),)
-                    ]),
-              )),
-        );
+            onTap: () =>
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return EventDetailsPage(eventId: eventsList[index].id);
+                })),
+            child: EventListItem(event: eventsList[index]));
       },
       itemCount: eventsList.length,
     );
