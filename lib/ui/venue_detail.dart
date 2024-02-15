@@ -6,7 +6,7 @@ import 'package:ticketmaster_api/blocs/bloc/venue_bloc.dart';
 import 'package:ticketmaster_api/models/venue_response/venue.dart';
 import 'package:ticketmaster_api/repositories/venue_repository.dart';
 import 'package:ticketmaster_api/repositories/venue_repository_impl.dart';
-// import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class VenueDetail extends StatefulWidget {
   final String id;
