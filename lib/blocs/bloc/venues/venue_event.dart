@@ -8,7 +8,7 @@ class VenueFetchList extends VenueBlocEvent {
   VenueFetchList();
 }
 
-class VenueViewDetail extends VenueBlocEvent {
+class VenueFetchDetail extends VenueBlocEvent {
   final String id;
-  VenueViewDetail(this.id);
+  VenueFetchDetail(this.id);
 }
