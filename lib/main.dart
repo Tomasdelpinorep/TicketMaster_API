@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ticketmaster_api/ui/events_page.dart';
 import 'package:ticketmaster_api/ui/home_page.dart';
+import 'package:ticketmaster_api/ui/venue_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +14,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      home: const HomeScreen(),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)
       ),
-      home: const HomePage(),
+      routes: {
+        '/events':(context) => const EventsPage(),
+        'venues':(context) => const VenuePage()
+      },
     );
   }
 }

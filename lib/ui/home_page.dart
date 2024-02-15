@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:ticketmaster_api/ui/events_page.dart';
+import 'package:ticketmaster_api/ui/venue_page.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
-  @override
-  State<HomePage> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomePage> {
-  @override
-  void initState(){
-    super.initState();
-    eventRepository = EventRepositoryImpl();
-  }
-  
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: const TabBar(tabs: [
+              Tab(icon: Icon(Icons.event)),
+              Tab(icon: Icon(Icons.stadium)),
+            ]),
+            title: const Text('TicketMaster API'),
+            centerTitle: true,
+          ),
+          body: const TabBarView(children: [EventsPage(), VenuePage()]),
+        ));
   }
 }
