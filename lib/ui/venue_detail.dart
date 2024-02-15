@@ -1,12 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ticketmaster_api/blocs/bloc/venue_bloc.dart';
-import 'package:ticketmaster_api/models/venue_response/venue.dart';
 import 'package:ticketmaster_api/repositories/venue_repository.dart';
 import 'package:ticketmaster_api/repositories/venue_repository_impl.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class VenueDetail extends StatefulWidget {
   final String id;
@@ -19,10 +15,6 @@ class VenueDetail extends StatefulWidget {
 class _VenueDetailState extends State<VenueDetail> {
   late VenueRepository venueRepository;
   late VenueBloc _venueBloc;
-  // final Completer<GoogleMapController> _controller =
-  //     Completer<GoogleMapController>();
-
-  // late Venue venueMaps;
 
   static const textStyle = TextStyle(
     fontWeight: FontWeight.bold,
@@ -81,9 +73,6 @@ class _VenueDetailState extends State<VenueDetail> {
                       style: textStyle,
                     ),
                   )),
-                // Column(
-                //   children: [googleMaps(context)],
-                // )
               ],
             ),
           ),
@@ -92,39 +81,4 @@ class _VenueDetailState extends State<VenueDetail> {
       return const Center(child: CircularProgressIndicator());
     });
   }
-
-  // Widget googleMaps(BuildContext context) {
-  //   final double latitude = venueMaps.location?.latitude ?? 0.0;
-  //   final double longitude = venueMaps.location?.longitude ?? 0.0;
-  //   CameraPosition _kGooglePlex = CameraPosition(
-  //     target: LatLng(latitude, longitude),
-  //     zoom: 14.4746,
-  //   );
-
-  //   const CameraPosition _kLake = CameraPosition(
-  //       bearing: 192.8334901395799,
-  //       target: LatLng(37.38049329951381, -6.007534638184238),
-  //       tilt: 59.440717697143555,
-  //       zoom: 19.151926040649414);
-
-  //   return Scaffold(
-  //     body: GoogleMap(
-  //       mapType: MapType.hybrid,
-  //       initialCameraPosition: _kGooglePlex,
-  //       onMapCreated: (GoogleMapController controller) {
-  //         _controller.complete(controller);
-  //       },
-  //     ),
-  //     // floatingActionButton: FloatingActionButton.extended(
-  //     //   onPressed: _goToTheLake,
-  //     //   label: const Text('To the lake!'),
-  //     //   icon: const Icon(Icons.directions_boat),
-  //     // ),
-  //   );
-  // }
-
-  // Future<void> _goToTheLake() async {
-  //   final GoogleMapController controller = await _controller.future;
-  //   await controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
-  // }
 }
