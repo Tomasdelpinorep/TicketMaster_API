@@ -1,11 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-<<<<<<< HEAD:lib/blocs/bloc/venues/venue_bloc.dart
 import 'package:ticketmaster_api/repositories/venue_repository.dart';
-=======
-import '../../repositories/venue_repository.dart';
->>>>>>> ea0c7202a2c1d67cbedfcdba30ea73c58441652d:lib/blocs/bloc/venue_bloc.dart
-
 import '../../../models/venue_response/venue.dart';
 part 'venue_event.dart';
 part 'venue_state.dart';
